@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
@@ -43,4 +44,10 @@ Route::group(['middleware' => 'adminMiddleware'], function () {
     Route::get('order/orderControl', [OrderController::class, 'showAll']);
     Route::get('order/{order:id}', [OrderController::class, 'detailOrder']);
 });
+
+Route::get('/home', [ProductController::class, 'showHome']);
+Route::get('/cart/create/{id}', [CartController::class, 'addCart']);
+Route::get('/cart', [CartController::class, 'cart']);
+Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+
 
