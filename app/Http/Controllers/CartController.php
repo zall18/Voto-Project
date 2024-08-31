@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Log;
-use Session;
 
 class CartController extends Controller
 {
@@ -21,21 +21,23 @@ class CartController extends Controller
             $request->session()->flash('errorCart', 'This product is already in the cart');
         } else {
             Cart::create([
-                'user_id' => 1,
+                'user_id' => Session::get('id'),
                 'product_id' => $request->id,
                 'quantity' => 1
             ]);
             $request->session()->flash('successCart', 'Successfully added to cart');
         }
-
+        
         return redirect('/home');
 
     }
 
     public function cart()
     {
-        $data['cart'] = Cart::where('user_id', 1)->get();
-        $data['cartCount'] = Cart::where('user_id', 1)->count();
+        $data['cart'] = Cart::where('user_id', Session::get('id'))->get();
+        // $data['cartId'] = $data['cart']->id;
+        $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
+        $data['title'] = 'cart';
 
         return view('CustomerView.cart', $data);
     }

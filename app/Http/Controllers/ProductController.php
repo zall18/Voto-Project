@@ -26,6 +26,7 @@ class ProductController extends Controller
     {
         $data['products'] = Product::orderByDesc('id')->paginate(8);
         $data['cartCount'] = Cart::where('user_id', 1)->count();
+        $data['title'] = 'home';
         return view('CustomerView.home', $data);
     }
 }

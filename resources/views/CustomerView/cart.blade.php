@@ -11,6 +11,7 @@
                 <div class="col-md-9 ftco-animate text-center">
                     <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>
                     <h1 class="mb-0 bread">My Wishlist</h1>
+                    {{-- @dd($cart) --}}
                 </div>
             </div>
         </div>
@@ -100,15 +101,29 @@
 
                             <span>Rp. @php
                                 $total = 0;
+                                $items = array();
+                                $i = 0;
                                 foreach ($cart as $key => $item) {
                                     $total += $item->product->price;
+                                    $array = array();
+                                    $array[0] = $item->product->id;
+                                    $array[1] = 1;
+                                    $array[2] = $item->product->price;
+                                    $items[$i] = $array;
+                                    $i++;
                                 }
                                 echo $total;
                             @endphp
                             </span>
                         </p>
                     </div>
-                    <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a>
+                    <form action="/checkout" method="post">
+                        @csrf
+                        <input type="hidden" name="cart" value="{{ $cart }}">
+                        {{-- <input type="hidden" name="cartId" value="{{ $cartId }}"> --}}
+                        <input type="hidden" name="items" value="{{ json_encode($items) }}">
+                        <button type="submit" class="btn btn-primary py-3 px-4">Proceed to Checkout</button>
+                    </form>
                     </p>
                 </div>
             </div>

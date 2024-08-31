@@ -86,4 +86,9 @@ class UserController extends Controller
     {
         return view('AdminView.userCreate');
     }
+
+    public function loginCustomerPage()
+    {
+        return view('CustomerView.loginCustomer');
+    }
 }

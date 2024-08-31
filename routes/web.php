@@ -18,9 +18,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AuthController::class, 'loginPage']);
+Route::get('/', [AuthController::class, 'Unauthorize']);
+Route::get('/loginAdmin', [AuthController::class, 'loginPage']);
 Route::post('/loginProcess', [AuthController::class, 'login']);
-Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::group(['middleware' => 'adminMiddleware'], function () {
 
@@ -43,11 +43,22 @@ Route::group(['middleware' => 'adminMiddleware'], function () {
 
     Route::get('order/orderControl', [OrderController::class, 'showAll']);
     Route::get('order/{order:id}', [OrderController::class, 'detailOrder']);
+
+    Route::get('/logout', [AuthController::class, 'logout']);
+
 });
 
-Route::get('/home', [ProductController::class, 'showHome']);
-Route::get('/cart/create/{id}', [CartController::class, 'addCart']);
-Route::get('/cart', [CartController::class, 'cart']);
-Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+Route::get('/loginCustomer', [UserController::class, 'loginCustomerPage']);
+Route::post('/loginCustomer/proccess', [AuthController::class, 'loginCustomer']);
+
+Route::group(['middleware' => 'customerLogin'], function () {
+    Route::get('/home', [ProductController::class, 'showHome']);
+    Route::get('/cart/create/{id}', [CartController::class, 'addCart']);
+    Route::get('/cart', [CartController::class, 'cart']);
+    Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+    Route::post('/checkout', [OrderController::class, 'checkout']);
+    Route::post('/checkout/process', [OrderController::class, 'checkoutProcess']);
+    Route::get('/logoutCustomer', [AuthController::class, 'logoutCustomer']);
+});
 
 
