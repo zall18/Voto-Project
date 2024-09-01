@@ -8,6 +8,7 @@ use App\Models\OrderItem;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
@@ -27,7 +28,7 @@ class OrderController extends Controller
 
     public function checkout(Request $request)
     {
-        $cart = json_decode($request->input('cart'), true);
+        // $cart = json_decode($request->input('cart'), true);
         $items = json_decode($request->input('items'), true);
     
         // You can now manipulate the $cart and $items arrays as needed
@@ -36,11 +37,11 @@ class OrderController extends Controller
         $total = 0;
         foreach($items as $item)
         {
-            $total += $item[2];
+            $total += $item[2] * $item[1];
         }
         $data['title'] = 'cart';
         $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
-        $data['cart'] = $cart;
+        // $data['cart'] = $cart;
         $data['items'] = $items;
         $data['total'] = $total;
         return view('CustomerView.checkout', $data);
@@ -48,7 +49,7 @@ class OrderController extends Controller
 
     public function checkoutProcess(Request $request)
     {
-        $cart = json_decode($request->input('cart'), true);
+        // $cart = json_decode($request->input('cart'), true);
         $items = json_decode($request->input('items'), true);
     
         $saveOrder = Order::create([
@@ -66,7 +67,7 @@ class OrderController extends Controller
                     'price' => $item[2]
                 ]);
             }
-        
+            Alert::toast('your product is pending now!', 'success');
             return redirect('/home');
     }
 }

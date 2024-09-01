@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,9 +51,12 @@ Route::group(['middleware' => 'adminMiddleware'], function () {
 
 Route::get('/loginCustomer', [UserController::class, 'loginCustomerPage']);
 Route::post('/loginCustomer/proccess', [AuthController::class, 'loginCustomer']);
+Route::get('/shopUnauthorize', [ProductController::class, 'shopUnauthorize']);
 
 Route::group(['middleware' => 'customerLogin'], function () {
     Route::get('/home', [ProductController::class, 'showHome']);
+    Route::get('/shop', [ProductController::class, 'shop']);
+    Route::get('/productDetail/{product:id}', [ProductController::class, 'productDetail']);
     Route::get('/cart/create/{id}', [CartController::class, 'addCart']);
     Route::get('/cart', [CartController::class, 'cart']);
     Route::get('/cart/remove/{id}', [CartController::class, 'remove']);

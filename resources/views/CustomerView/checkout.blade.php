@@ -156,7 +156,7 @@
                                   </div>
                                   <form action="/checkout/process" method="post">
                                     @csrf
-                                    <input type="hidden" name="cart" value="{{ json_encode($cart) }}">
+                                    {{-- <input type="hidden" name="cart" value="{{ json_encode($cart) }}"> --}}
                                     {{-- <input type="hidden" name="cartId" value="{{ $cartId }}"> --}}
                                     <input type="hidden" name="items" value="{{ json_encode($items) }}">
                                     <input type="hidden" name="total" value="{{ $total }}">

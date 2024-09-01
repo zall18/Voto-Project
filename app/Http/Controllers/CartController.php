@@ -6,18 +6,20 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Log;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartController extends Controller
 {
     public function addCart(Request $request)
     {
 
-        $cart = Cart::where('user_id', 1)
+        $cart = Cart::where('user_id', Session::get('id'))
             ->where('product_id', $request->id)
             ->first();
 
 
         if ($cart) {
+            Alert::toast('This product is already in cart', 'error');
             $request->session()->flash('errorCart', 'This product is already in the cart');
         } else {
             Cart::create([
@@ -25,10 +27,12 @@ class CartController extends Controller
                 'product_id' => $request->id,
                 'quantity' => 1
             ]);
+            Alert::toast('success to add to cart', 'success');
+
             $request->session()->flash('successCart', 'Successfully added to cart');
         }
         
-        return redirect('/home');
+        return back();  
 
     }
 

@@ -1,25 +1,13 @@
 @extends('Template.customerTemplate')
 
 @section('contentCustomer')
-    @if (Session::get('errorCart'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-
-            {{ Session::get('errorCart') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+    {{-- @if (Session::get('errorCart'))
+        toast('{{ Session:get('errorCart') }}', 'error')
     @endif
 
     @if (Session::get('successCart'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-
-            {{ Session::get('successCart') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
+        toast('{{ Session:get('successCart') }}', 'success')
+    @endif --}}
 
 
     <section id="home-section" class="hero">
@@ -132,7 +120,7 @@
                 @foreach ($products as $item)
                     <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                         <div class="product d-flex flex-column">
-                            <a href="#" class="img-prod"><img class="img-fluid"
+                            <a href="" class="img-prod"><img class="img-fluid"
                                     src="{{ asset('customerAssets/imagesCamera/fujifilmxt4-removebg-preview.png') }}"
                                     alt="Colorlib Template">
                                 <div class="overlay"></div>
@@ -152,7 +140,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <h3><a href="#">{{ $item->name }}</a></h3>
+                                <h3><a href="/productDetail/{{ $item->id }}">{{ $item->name }}</a></h3>
                                 <div class="pricing">
                                     <p class="price"><span>Rp. {{ $item->price }}</span></p>
                                 </div>
