@@ -109,6 +109,7 @@
                                     $array[0] = $item->product->id;
                                     $array[1] = 1;
                                     $array[2] = $item->product->price;
+                                    $array[3] = $item->product->name;
                                     $items[$i] = $array;
                                     $i++;
                                 }

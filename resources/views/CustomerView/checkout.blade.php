@@ -16,19 +16,13 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-xl-10 ftco-animate">
-                      <form action="#" class="billing-form">
-                          <h3 class="mb-4 billing-heading">Billing Details</h3>
+              <form action="#" class="billing-form">
+                <h3 class="mb-4 billing-heading">Billing Details</h3>
                 <div class="row align-items-end">
-                    <div class="col-md-6">
+                <div class="col-md-12">
                   <div class="form-group">
-                      <label for="firstname">Firt Name</label>
-                    <input type="text" class="form-control" placeholder="">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                      <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" placeholder="">
+                      <label for="lastname">Name</label>
+                    <input type="text" class="form-control" placeholder="" value="{{ $address->user->name }}">
                   </div>
               </div>
               <div class="w-100"></div>
@@ -37,14 +31,8 @@
                           <label for="country">State / Country</label>
                           <div class="select-wrap">
                         <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="" class="form-control">
-                            <option value="">France</option>
-                          <option value="">Italy</option>
-                          <option value="">Philippines</option>
-                          <option value="">South Korea</option>
-                          <option value="">Hongkong</option>
-                           <option value="">Japan</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="" value="{{ $address->country }}">
+                        
                       </div>
                       </div>
                   </div>
@@ -52,53 +40,62 @@
                   <div class="col-md-6">
                       <div class="form-group">
                       <label for="streetaddress">Street Address</label>
-                    <input type="text" class="form-control" placeholder="House number and street name">
+                    <input type="text" class="form-control" placeholder="House number and street name" {{ $address->street_address }}>
                   </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)">
+                    <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)" value="{{ $address->detail_address }}">
                   </div>
                   </div>
                   <div class="w-100"></div>
                   <div class="col-md-6">
                       <div class="form-group">
                       <label for="towncity">Town / City</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" placeholder="" value="{{ $address->city }}">
                   </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
                           <label for="postcodezip">Postcode / ZIP *</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" placeholder="" value="{{ $address->postal_code }}">
                   </div>
                   </div>
                   <div class="w-100"></div>
                   <div class="col-md-6">
                   <div class="form-group">
                       <label for="phone">Phone</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" placeholder="" value="{{ $address->phone }}">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                       <label for="emailaddress">Email Address</label>
-                    <input type="text" class="form-control" placeholder="">
+                    <input type="text" class="form-control" placeholder="" value="{{ $address->user->email }}">
                   </div>
               </div>
               <div class="w-100"></div>
-              <div class="col-md-12">
-                  <div class="form-group mt-4">
-                                      <div class="radio">
-                                        <label class="mr-3"><input type="radio" name="optradio"> Create an Account? </label>
-                                        <label><input type="radio" name="optradio"> Ship to different address</label>
-                                      </div>
-                                  </div>
-              </div>
+            
               </div>
             </form><!-- END -->
 
-
+            <div class="col-md-12 d-flex">
+              <div class="cart-detail cart-total bg-light p-3 p-md-4">
+                  <h3 class="billing-heading mb-4">Product Checkout Detail</h3>
+                  <p class="d-flex">
+                    <span>Name Product</span>
+                    <span>Price</span>
+                    <span>Quantity</span>
+                  </p>
+                  @foreach ($items as $item)
+                    <p class="d-flex">
+                      <span>{{ $item[3] }}</span>
+                      <span>Rp. {{ $item[2] }}</span>
+                      <span>{{ $item[1] }}</span>
+                    </p>
+                  @endforeach
+              </div>
+          </div>
 
             <div class="row mt-5 pt-3 d-flex">
                 <div class="col-md-6 d-flex">

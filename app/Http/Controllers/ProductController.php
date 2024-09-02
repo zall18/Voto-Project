@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function showHome()
     {
         $data['products'] = Product::orderByDesc('id')->paginate(8);
-        $data['cartCount'] = Cart::where('user_id', 1)->count();
+        $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
         $data['title'] = 'home';
         return view('CustomerView.home', $data);
     }
@@ -46,7 +46,7 @@ class ProductController extends Controller
     {
         $data['product'] = $product;
         $data['title'] = 'home';
-        $data['cartCount'] = Cart::where('user_id', 1)->count();    
+        $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();    
         return view('CustomerView.productDetail', $data);
     }
 }

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Order;
@@ -26,12 +28,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        User::factory(10)->create();
-        Category::factory(10)->create();
-        Product::factory(10)->create();
-        Order::factory(10)->create();
-        Cart::factory(10)->create();
-        OrderItem::factory(10)->create();
+        User::factory(5)->create();
+        Category::factory(5)->create();
+        Product::factory(5)->create();
+        Order::factory(5)->create();
+        Cart::factory(5)->create();
+        OrderItem::factory(5)->create();
+        Address::factory(5)->create();
         // OrderItems::factory(10)->create();
         // OrderItemsFactory(10)->create();
 

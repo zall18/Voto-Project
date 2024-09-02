@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -44,6 +45,7 @@ class OrderController extends Controller
         // $data['cart'] = $cart;
         $data['items'] = $items;
         $data['total'] = $total;
+        $data['address'] = Address::where('user_id', Session::get('id'))->first();
         return view('CustomerView.checkout', $data);
     }
 
