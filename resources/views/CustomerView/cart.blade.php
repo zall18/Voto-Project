@@ -56,11 +56,13 @@
 
                                         <td class="price">Rp. {{ $item->product->price }}</td>
 
+
+
                                         <td class="quantity">
                                             <div class="input-group mb-3">
                                                 <input type="text" name="quantity"
-                                                    class="quantity form-control input-number" value="1" min="1"
-                                                    max="100">
+                                                    class="quantity form-control input-number" min="1" max="100"
+                                                    value="{{ $item->quantity }}" disabled>
                                             </div>
                                         </td>
 
@@ -101,13 +103,13 @@
 
                             <span>Rp. @php
                                 $total = 0;
-                                $items = array();
+                                $items = [];
                                 $i = 0;
                                 foreach ($cart as $key => $item) {
                                     $total += $item->product->price;
-                                    $array = array();
+                                    $array = [];
                                     $array[0] = $item->product->id;
-                                    $array[1] = 1;
+                                    $array[1] = $item->quantity;
                                     $array[2] = $item->product->price;
                                     $array[3] = $item->product->name;
                                     $items[$i] = $array;

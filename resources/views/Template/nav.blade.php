@@ -31,12 +31,15 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ $title == 'home' ? 'active' : '' }}"><a href="/home" class="nav-link">Home</a></li>
-                <li class="nav-item {{ $title == 'about' ? 'active' : '' }}"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item {{ $title == 'contact' ? 'active' : '' }}"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item {{ $title == 'home' ? 'active' : '' }}"><a href="/home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item {{ $title == 'about' ? 'active' : '' }}"><a href="about.html"
+                        class="nav-link">About</a></li>
+                <li class="nav-item {{ $title == 'profile' ? 'active' : '' }}"><a href="/me"
+                        class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="/logoutCustomer" class="nav-link">Logout</a></li>
-                <li class="nav-item cta cta-colored {{ $title == 'cart' ? 'active' : '' }}"><a href="/cart" class="nav-link"><span
-                            class="icon-shopping_cart"></span>[{{ $cartCount }}]</a></li>
+                <li class="nav-item cta cta-colored {{ $title == 'cart' ? 'active' : '' }}"><a href="/cart"
+                        class="nav-link"><span class="icon-shopping_cart"></span>[{{ $cartCount }}]</a></li>
 
             </ul>
         </div>

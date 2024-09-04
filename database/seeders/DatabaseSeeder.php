@@ -28,13 +28,39 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        User::factory(5)->create();
-        Category::factory(5)->create();
-        Product::factory(5)->create();
-        Order::factory(5)->create();
-        Cart::factory(5)->create();
-        OrderItem::factory(5)->create();
-        Address::factory(5)->create();
+
+
+
+
+
+        //USE THIS USER TO TEST
+        //THE USER IS A ADMIN, SO YOU CAN LOGIN TO ADMIN VIEW
+
+        User::create([
+            'name' => 'james smith',
+            'email' => 'james@gmail.com',
+            'password' => bcrypt('12345'),
+            'role' => 'admin'
+        ]);
+
+        Address::create([
+            'user_id' => '1',
+            'street_address' => 'Tokyo street ST 12',
+            'city' => 'Tokyo',
+            'state' => 'babakan muncang',
+            'postal_code' => '09182',
+            'country' => 'Japan',
+            'phone' => '099809129803',
+            'detail_address' => 'side of paradise'
+        ]);
+
+        User::factory(10)->create();
+        Category::factory(10)->create();
+        Product::factory(10)->create();
+        Order::factory(10)->create();
+        Cart::factory(10)->create();
+        OrderItem::factory(10)->create();
+        Address::factory(10)->create();
         // OrderItems::factory(10)->create();
         // OrderItemsFactory(10)->create();
 

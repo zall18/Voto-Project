@@ -18,6 +18,9 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+
+        $images = ['samsungnx500-removebg-preview.png', 'pentaxk1-removebg-preview(1).png', 'nikond7500-removebg-preview.png', 'lumixgh5-removebg-preview.png', 'leicam10r-removebg-preview.png', 'fujifilmxt4-removebg-preview.png', 'fujifilmxt3-removebg-preview.png', 'fujifilmxa5-removebg-preview.png', 'canonpowershotg7x-removebg-preview.png', 'canoneosr5-removebg-preview.png', 'pentaxk1-removebg-preview.png'];
+
         return [
             'name' => $this->faker->word,
             'description' => $this->faker->sentence,
@@ -25,7 +28,7 @@ class ProductFactory extends Factory
             'stock' => $this->faker->numberBetween(10, 100),
             'brand' => $this->faker->company,
             'model' => $this->faker->word,
-            'image' => $this->faker->imageUrl(640, 480, 'cameras'),
+            'image' => $this->faker->randomElement($images),
             'category_id' => Category::factory(),
             'user_id' => User::factory(),
         ];

@@ -56,8 +56,12 @@ Route::get('/shopUnauthorize', [ProductController::class, 'shopUnauthorize']);
 Route::group(['middleware' => 'customerLogin'], function () {
     Route::get('/home', [ProductController::class, 'showHome']);
     Route::get('/shop', [ProductController::class, 'shop']);
+    Route::get('/me', [UserController::class, 'me']);
+    Route::get('/user/product/createView', [ProductController::class, 'productCreateView']);
+    Route::post('/user/product/create', [ProductController::class, 'productCreate']);
     Route::get('/productDetail/{product:id}', [ProductController::class, 'productDetail']);
     Route::get('/cart/create/{id}', [CartController::class, 'addCart']);
+    Route::post('/cart/create/detail/{id}', [CartController::class, 'addCartDetail']);
     Route::get('/cart', [CartController::class, 'cart']);
     Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
     Route::post('/checkout', [OrderController::class, 'checkout']);

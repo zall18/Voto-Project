@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Product;
@@ -90,5 +91,16 @@ class UserController extends Controller
     public function loginCustomerPage()
     {
         return view('CustomerView.loginCustomer');
+    }
+
+    public function me()
+    {
+        $data['user'] = User::find(Session::get('id'));
+        $data['title'] = 'profile';
+        $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
+        $data['address'] = Address::where('user_id', Session::get('id'))->first();
+        $data['products'] = Product::where('user_id', Session::get('id'))->paginate(4);
+
+        return view('CustomerView.profile', $data);
     }
 }

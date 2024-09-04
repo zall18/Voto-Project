@@ -26,7 +26,7 @@ class AddressFactory extends Factory
             'postal_code' => $this->faker->postcode,
             'country' => $this->faker->country,
             'phone' => $this->faker->phoneNumber,  // Generates a random phone number
-            'detail_address' => $this->faker->sentence, 
+            'detail_address' => $this->faker->sentence,
         ];
     }
 }

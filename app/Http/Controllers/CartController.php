@@ -31,8 +31,33 @@ class CartController extends Controller
 
             $request->session()->flash('successCart', 'Successfully added to cart');
         }
-        
-        return back();  
+
+        return back();
+
+    }
+    public function addCartDetail(Request $request)
+    {
+
+        $cart = Cart::where('user_id', Session::get('id'))
+            ->where('product_id', $request->id)
+            ->first();
+
+
+        if ($cart) {
+            Alert::toast('This product is already in cart', 'error');
+            $request->session()->flash('errorCart', 'This product is already in the cart');
+        } else {
+            Cart::create([
+                'user_id' => Session::get('id'),
+                'product_id' => $request->id,
+                'quantity' => $request->quantity
+            ]);
+            Alert::toast('success to add to cart', 'success');
+
+            $request->session()->flash('successCart', 'Successfully added to cart');
+        }
+
+        return back();
 
     }
 
