@@ -1,7 +1,7 @@
 @extends('Template.customerTemplate')
 
 @section('contentCustomer')
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ asset('customerAssets/images/bg_6.jpg') }});">
         <div class="container">
             <div class="row no-gutters slider-text align-items-center justify-content-center">
                 <div class="col-md-9 ftco-animate text-center">
@@ -19,8 +19,8 @@
                 <div class="row">
                     <div class="col-lg-6 mb-5 ftco-animate">
                         <a href="" class="image-popup prod-img-bg"><img
-                                src="{{ asset('customerAssets/imagesCamera/fujifilmxt3-removebg-preview.png') }}"
-                                class="img-fluid" alt="Colorlib Template"></a>
+                                src="{{ asset('storage/image/' . $product->image) }}" class="img-fluid"
+                                alt="Colorlib Template"></a>
                     </div>
                     <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                         <h3>{{ $product->name }}</h3>
@@ -117,27 +117,11 @@
                         <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
                             aria-labelledby="day-1-tab">
                             <div class="p-4">
-                                <h3 class="mb-4">Nike Free RN 2019 iD</h3>
-                                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from
-                                    it would have been rewritten a thousand times and everything that was left from its
-                                    origin would be the word "and" and the Little Blind Text should turn around and return
-                                    to its own, safe country. But nothing the copy said could convince her and so it didn’t
-                                    take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and
-                                    Parole and dragged her into their agency, where they abused her for their.</p>
+                                <h3 class="mb-4">{{ $product->name }}</h3>
+                                <p>{{ $product->description }}</p>
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
-                            <div class="p-4">
-                                <h3 class="mb-4">Manufactured By Nike</h3>
-                                <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from
-                                    it would have been rewritten a thousand times and everything that was left from its
-                                    origin would be the word "and" and the Little Blind Text should turn around and return
-                                    to its own, safe country. But nothing the copy said could convince her and so it didn’t
-                                    take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and
-                                    Parole and dragged her into their agency, where they abused her for their.</p>
-                            </div>
-                        </div>
                         <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
                             <div class="row p-4">
                                 <div class="col-md-7">

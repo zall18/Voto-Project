@@ -29,6 +29,7 @@ class ProductFactory extends Factory
             'brand' => $this->faker->company,
             'model' => $this->faker->word,
             'image' => $this->faker->randomElement($images),
+            'is_publish' => $this->faker->boolean(),
             'category_id' => Category::factory(),
             'user_id' => User::factory(),
         ];

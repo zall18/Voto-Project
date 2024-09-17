@@ -106,7 +106,7 @@
                                 $items = [];
                                 $i = 0;
                                 foreach ($cart as $key => $item) {
-                                    $total += $item->product->price;
+                                    $total += $item->product->price * $item->quantity;
                                     $array = [];
                                     $array[0] = $item->product->id;
                                     $array[1] = $item->quantity;

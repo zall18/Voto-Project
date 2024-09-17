@@ -133,8 +133,7 @@
                     <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                         <div class="product d-flex flex-column">
                             <a href="#" class="img-prod"><img class="img-fluid"
-                                    src="{{ asset('customerAssets/imagesCamera/fujifilmxt4-removebg-preview.png') }}"
-                                    alt="Colorlib Template">
+                                    src="{{ asset('storage/image/' . $item->image) }}" alt="Colorlib Template">
                                 <div class="overlay"></div>
                             </a>
                             <div class="text py-3 pb-4 px-3">
@@ -157,9 +156,8 @@
                                     <p class="price"><span>Rp. {{ $item->price }}</span></p>
                                 </div>
                                 <p class="bottom-area d-flex px-3">
-                                    <a href="/loginCustomer"
-                                        class="add-to-cart text-center py-2 mr-1"><span>Add to cart <i
-                                                class="ion-ios-add ml-1"></i></span></a>
+                                    <a href="/loginCustomer" class="add-to-cart text-center py-2 mr-1"><span>Add to cart
+                                            <i class="ion-ios-add ml-1"></i></span></a>
                                     <a href="#" class="buy-now text-center py-2">Buy now<span><i
                                                 class="ion-ios-cart ml-1"></i></span></a>
                                 </p>

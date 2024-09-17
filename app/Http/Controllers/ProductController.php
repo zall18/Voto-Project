@@ -25,7 +25,7 @@ class ProductController extends Controller
 
     public function showHome()
     {
-        $data['products'] = Product::orderByDesc('id')->paginate(8);
+        $data['products'] = Product::orderByDesc('id')->where('stock', ">", 0)->where('is_publish', true)->paginate(8);
         $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
         $data['title'] = 'home';
         return view('CustomerView.home', $data);
@@ -33,14 +33,16 @@ class ProductController extends Controller
 
     public function shopUnauthorize()
     {
-        $data['products'] = Product::paginate(8);
+        $data['products'] = Product::paginate(9);
         return view('CustomerView.shopUnauthorize', $data);
     }
 
     public function shop()
     {
         $data['products'] = Product::paginate(8);
-        return view('CustomerView.shopUnauthorize', $data);
+        $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
+        $data['title'] = 'shop';
+        return view('CustomerView.shop', $data);
     }
 
     public function productDetail(Product $product)

@@ -33,6 +33,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ $title == 'home' ? 'active' : '' }}"><a href="/home" class="nav-link">Home</a>
                 </li>
+                <li class="nav-item"><a href="/shop" class="nav-link">Shop</a></li>
                 <li class="nav-item {{ $title == 'about' ? 'active' : '' }}"><a href="about.html"
                         class="nav-link">About</a></li>
                 <li class="nav-item {{ $title == 'profile' ? 'active' : '' }}"><a href="/me"

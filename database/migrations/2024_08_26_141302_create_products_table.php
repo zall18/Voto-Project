@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('brand');
             $table->string('model');
             $table->string('image')->nullable();
+            $table->boolean('is_publish');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

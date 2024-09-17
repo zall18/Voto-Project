@@ -105,8 +105,7 @@
                             <div class="col-sm-12 col-md-12 col-lg-4 ftco-animate d-flex">
                                 <div class="product d-flex flex-column">
                                     <a href="#" class="img-prod"><img class="img-fluid"
-                                            src="{{ asset('customerAssets/imagesCamera/pentaxk1-removebg-preview.png') }}"
-                                            alt="Colorlib Template">
+                                            src="{{ asset('storage/image/' . $item->image) }}" alt="Colorlib Template">
                                         <div class="overlay"></div>
                                     </a>
                                     <div class="text py-3 pb-4 px-3">
