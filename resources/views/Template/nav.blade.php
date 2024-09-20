@@ -39,6 +39,9 @@
                 <li class="nav-item {{ $title == 'profile' ? 'active' : '' }}"><a href="/me"
                         class="nav-link">Profile</a></li>
                 <li class="nav-item"><a href="/logoutCustomer" class="nav-link">Logout</a></li>
+                @if (Session::get('role') == 'admin')
+                    <li class="nav-item"><a href="/loginAdmin" class="nav-link">Dashboard</a></li>
+                @endif
                 <li class="nav-item cta cta-colored {{ $title == 'cart' ? 'active' : '' }}"><a href="/cart"
                         class="nav-link"><span class="icon-shopping_cart"></span>[{{ $cartCount }}]</a></li>
 

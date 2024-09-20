@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Address;
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\discountedProduct;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -54,6 +55,30 @@ class DatabaseSeeder extends Seeder
             'detail_address' => 'side of paradise'
         ]);
 
+        // Product::create([
+        //     'name' => 'discount product',
+        //     'description' => 'description',
+        //     'price' => 200000,
+        //     'stock' => 100,
+        //     'brand' => 'stark',
+        //     'model' => 'old',
+        //     'image' => 'canoneosr5-removebg-preview.png',
+        //     'is_publish' => true,
+        //     'is_discount' => true,
+        //     'category_id' => 1,
+        //     'user_id' => 1,
+        // ]);
+
+        // discountedProduct::create([
+        //     'product_id' => $DiscountProduct,
+        //     'real_price' => 200000,
+        //     'discout_price' => 160000
+        // ]);
+
+        // Product::where('id', 1)->update([
+        //     'price' => 160000
+        // ]);
+
         User::factory(10)->create();
         Category::factory(10)->create();
         Product::factory(10)->create();
@@ -63,6 +88,8 @@ class DatabaseSeeder extends Seeder
         Address::factory(10)->create();
         // OrderItems::factory(10)->create();
         // OrderItemsFactory(10)->create();
+
+
 
     }
 }

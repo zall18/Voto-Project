@@ -12,54 +12,33 @@
 
     <section id="home-section" class="hero">
         <div class="home-slider owl-carousel">
+            @foreach ($highlight as $item)
             <div class="slider-item js-fullheight">
                 <div class="overlay"></div>
                 <div class="container-fluid p-0">
                     <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-end"
                         data-scrollax-parent="true">
                         <img class="one-third order-md-last img-fluid"
-                            src="{{ asset('customerAssets/imagesCamera/canonpowershotg7x-removebg-preview.png') }}"
+                            src="{{ asset('storage/image/' . $item->image) }}"
                             alt="" width="100px">
                         <div class="one-forth d-flex align-items-center ftco-animate"
                             data-scrollax=" properties: { translateY: '70%' }">
                             <div class="text">
                                 <span class="subheading">#New Arrival</span>
                                 <div class="horizontal">
-                                    <h1 class="mb-4 mt-3">Shoes Collection 2019</h1>
-                                    <p class="mb-4">A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia. It is a paradisematic country.</p>
+                                    <h1 class="mb-4 mt-3">{{ $item->name }}</h1>
+                                    <p class="mb-4">{{ $item->description }}</p>
 
-                                    <p><a href="#" class="btn-custom">Discover Now</a></p>
+                                    <p><a href="/productDetail/{{ $item->id }}" class="btn-custom">Discover Now</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
 
-            <div class="slider-item js-fullheight">
-                <div class="overlay"></div>
-                <div class="container-fluid p-0">
-                    <div class="row d-flex no-gutters slider-text align-items-center justify-content-end"
-                        data-scrollax-parent="true">
-                        <img class="one-third order-md-last img-fluid"
-                            src="{{ asset('customerAssets/imagesCamera/canoneosr5-removebg-preview.png') }}" alt="">
-                        <div class="one-forth d-flex align-items-center ftco-animate"
-                            data-scrollax=" properties: { translateY: '70%' }">
-                            <div class="text">
-                                <span class="subheading">#New Arrival</span>
-                                <div class="horizontal">
-                                    <h1 class="mb-4 mt-3">New Shoes Winter Collection</h1>
-                                    <p class="mb-4">A small river named Duden flows by their place and supplies it
-                                        with the necessary regelialia. It is a paradisematic country.</p>
 
-                                    <p><a href="#" class="btn-custom">Discover Now</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -120,7 +99,7 @@
                 @foreach ($products as $item)
                     <div class="col-sm-12 col-md-6 col-lg-3 ftco-animate d-flex">
                         <div class="product d-flex flex-column">
-                            <a href="" class="img-prod py-5"><img class="img-fluid"
+                            <a href="/productDetail/{{ $item->id }}" class="img-prod py-5"><img class="img-fluid"
                                     src="{{ asset('storage/image/' . $item->image) }}" alt="Colorlib Template">
                                 <div class="overlay"></div>
                             </a>

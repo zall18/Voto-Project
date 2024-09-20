@@ -20,7 +20,6 @@ class CartController extends Controller
 
         if ($cart) {
             Alert::toast('This product is already in cart', 'error');
-            $request->session()->flash('errorCart', 'This product is already in the cart');
         } else {
             Cart::create([
                 'user_id' => Session::get('id'),
@@ -29,7 +28,6 @@ class CartController extends Controller
             ]);
             Alert::toast('success to add to cart', 'success');
 
-            $request->session()->flash('successCart', 'Successfully added to cart');
         }
 
         return back();
@@ -45,7 +43,6 @@ class CartController extends Controller
 
         if ($cart) {
             Alert::toast('This product is already in cart', 'error');
-            $request->session()->flash('errorCart', 'This product is already in the cart');
         } else {
             Cart::create([
                 'user_id' => Session::get('id'),
@@ -54,7 +51,6 @@ class CartController extends Controller
             ]);
             Alert::toast('success to add to cart', 'success');
 
-            $request->session()->flash('successCart', 'Successfully added to cart');
         }
 
         return back();

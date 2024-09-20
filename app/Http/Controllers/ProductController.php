@@ -27,19 +27,20 @@ class ProductController extends Controller
     {
         $data['products'] = Product::orderByDesc('id')->where('stock', ">", 0)->where('is_publish', true)->paginate(8);
         $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
+        $data['highlight'] = Product::orderByDesc('id')->where('stock', ">", 0)->where('is_publish', true)->paginate(2);
         $data['title'] = 'home';
         return view('CustomerView.home', $data);
     }
 
     public function shopUnauthorize()
     {
-        $data['products'] = Product::paginate(9);
+        $data['products'] = Product::where('stock', ">", 0)->where('is_publish', true)->paginate(9);
         return view('CustomerView.shopUnauthorize', $data);
     }
 
     public function shop()
     {
-        $data['products'] = Product::paginate(8);
+        $data['products'] = Product::where('stock', ">", 0)->where('is_publish', true)->paginate(8);
         $data['cartCount'] = Cart::where('user_id', Session::get('id'))->count();
         $data['title'] = 'shop';
         return view('CustomerView.shop', $data);

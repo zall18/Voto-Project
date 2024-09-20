@@ -69,7 +69,7 @@
                                     class="nav-icon bi bi-circle"></i>
                                 <p>Order Control</p>
                             </a> </li>
-                        <li class="nav-item"> <a href="./tables/simple.html" class="nav-link"> <i
+                        <li class="nav-item"> <a href="/category/categoryControl" class="nav-link"> <i
                                     class="nav-icon bi bi-circle"></i>
                                 <p>Category Control</p>
                             </a> </li>

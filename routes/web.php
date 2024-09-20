@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
@@ -44,6 +45,9 @@ Route::group(['middleware' => 'adminMiddleware'], function () {
 
     Route::get('order/orderControl', [OrderController::class, 'showAll']);
     Route::get('order/{order:id}', [OrderController::class, 'detailOrder']);
+
+    //Category Route
+    Route::get('category/categoryControl', [CategoryController::class, 'index']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 

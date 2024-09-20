@@ -69,11 +69,12 @@ class AuthController extends Controller
         // if ($user) {
         if (Auth::attempt($validate)) {
             $user = Auth::user();
-            
+
                 $request->session()->put("name", $user->name);
                 $request->session()->put("id", $user->id);
+                $request->session()->put("role", $user->role);
                 return redirect('/home');
-            
+
         }else{
             return redirect('/loginCustomer');
         }
@@ -88,6 +89,7 @@ class AuthController extends Controller
     public function Unauthorize()
     {
         $data['products'] = Product::orderByDesc('id')->paginate(8);
+        $data['highlight'] = Product::orderByDesc('id')->where('stock', ">", 0)->where('is_publish', true)->paginate(2);
         return view('CustomerView.homeUnauthorize', $data);
     }
 }

@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('model');
             $table->string('image')->nullable();
             $table->boolean('is_publish');
+            $table->boolean('is_discount');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
