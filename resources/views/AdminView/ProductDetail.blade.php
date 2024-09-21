@@ -1,9 +1,9 @@
 @extends('Template.adminTemplate')
 
 @section('content')
-    <div class="card card-primary card-outline m-3 mb-5"> 
-        
-        <form action="" method="POST" class="m-3">
+    <div class="card card-primary card-outline m-3 mb-5">
+
+        <form action="" class="m-3">
             @csrf
             <h1 class="pt-5 pb-4 border-bottom">{{ $product->name }} Detail</h1>
             <div class="card-body">
@@ -43,10 +43,17 @@
                     <label for="user" class="form-label">User</label>
                     <input type="text" class="form-control" id="user" name="user" value="{{ $product->user->name }}"  disabled>
                 </div>
-                <input type="submit" class="btn btn-danger w-100 mb-3" name="Save" value="Suspend product" />
+                <div class="mb-3">
+                    <label for="user" class="form-label">is_publish</label>
+                    <input type="text" class="form-control" id="user" name="user" value="{{ $product->is_publish == 1 ? 'publish' : 'Not Publish' }}"  disabled>
+                </div>
 
 
         </form>
-
+        @if ($product->is_publish == 1)
+            <button class="btn btn-danger w-100 mb-3" name="Save"><a href="/product/suspend/{{ $product->id }}" class="text-decoration-none text-white">Suspend Product</a></button>
+        @else
+            <button class="btn btn-success w-100 mb-3" name="Save"><a href="/product/recovery/{{ $product->id }}" class="text-decoration-none text-white">Recovery Product</a></button>
+        @endif
     </div>
 @endsection

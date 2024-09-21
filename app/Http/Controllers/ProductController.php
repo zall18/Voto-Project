@@ -106,4 +106,28 @@ class ProductController extends Controller
         $data['categories'] = Category::all();
         return view('CustomerView.productCreate', $data);
     }
+
+    public function suspendProduct(Request $request)
+    {
+        $product = Product::where('id', $request->id);
+        if($product->count() > 0)
+        {
+            $product->update([
+                'is_publish' => 0
+            ]);
+            return back();
+        }
+    }
+
+    public function recoveryProduct(Request $request)
+    {
+        $product = Product::where('id', $request->id);
+        if($product->count() > 0)
+        {
+            $product->update([
+                'is_publish' => 1
+            ]);
+            return back();
+        }
+    }
 }

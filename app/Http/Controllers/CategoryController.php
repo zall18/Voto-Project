@@ -13,6 +13,15 @@ class CategoryController extends Controller
         return view('AdminView.CategoryControl', $data);
     }
 
+    public function delete(Request $request)
+    {
+        $category = Category::where('id', $request->id);
+        if($category->count() > 0){
+            $category->delete();
+            return back();
+        }
+    }
+
     public function create(Request $request) {
         $validate = $request->validate([
             'name' => ['required'],

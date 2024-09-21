@@ -40,6 +40,8 @@ Route::group(['middleware' => 'adminMiddleware'], function () {
 
     Route::get('product/productControl', [ProductController::class, 'showAll']);
     Route::get('product/{product:id}', [ProductController::class, 'detailProduct']);
+    Route::get('product/suspend/{id}', [ProductController::class, 'suspendProduct']);
+    Route::get('product/recovery/{id}', [ProductController::class, 'recoveryProduct']);
 
     //Order Route
 
@@ -48,28 +50,45 @@ Route::group(['middleware' => 'adminMiddleware'], function () {
 
     //Category Route
     Route::get('category/categoryControl', [CategoryController::class, 'index']);
+    Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
 
     Route::get('/logout', [AuthController::class, 'logout']);
 
 });
+
+// Unauthorize User Route
 
 Route::get('/loginCustomer', [UserController::class, 'loginCustomerPage']);
 Route::post('/loginCustomer/proccess', [AuthController::class, 'loginCustomer']);
 Route::get('/shopUnauthorize', [ProductController::class, 'shopUnauthorize']);
 
 Route::group(['middleware' => 'customerLogin'], function () {
+
+    // Home Route
     Route::get('/home', [ProductController::class, 'showHome']);
+
+    // Shop Route
     Route::get('/shop', [ProductController::class, 'shop']);
+
+    // User Profile Route
     Route::get('/me', [UserController::class, 'me']);
     Route::get('/user/product/createView', [ProductController::class, 'productCreateView']);
     Route::post('/user/product/create', [ProductController::class, 'productCreate']);
+
+    // Detail Product
     Route::get('/productDetail/{product:id}', [ProductController::class, 'productDetail']);
+
+    // Cart Route
     Route::get('/cart/create/{id}', [CartController::class, 'addCart']);
     Route::post('/cart/create/detail/{id}', [CartController::class, 'addCartDetail']);
     Route::get('/cart', [CartController::class, 'cart']);
     Route::get('/cart/remove/{id}', [CartController::class, 'remove']);
+
+    // Checkout Route
     Route::post('/checkout', [OrderController::class, 'checkout']);
     Route::post('/checkout/process', [OrderController::class, 'checkoutProcess']);
+
+    // Authorize Logout
     Route::get('/logoutCustomer', [AuthController::class, 'logoutCustomer']);
 });
 
