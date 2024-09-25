@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Address;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use View;
 
 class AuthController extends Controller
@@ -40,7 +42,7 @@ class AuthController extends Controller
                 Auth::logout();
                 return redirect('/');
             }
-        }else{
+        } else {
             return redirect('/');
         }
         // }
@@ -62,6 +64,71 @@ class AuthController extends Controller
         return view('CustomerView.register');
     }
 
+    public function registerProsess(Request $request)
+    {
+
+        $validate = $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'unique:users'],
+            'password' => ['required', 'min:6'],
+            'repassword' => ['required'],
+            'country' => ['required'],
+            'state' => ['required'],
+            'street_address' => ['required'],
+            'detail_address' => ['required'],
+            'city' => ['required'],
+            'postal_code' => ['required'],
+            'phone' => ['required']
+        ]);
+
+        if ($validate) {
+
+            if ($request->password == $request->repassword) {
+                $lastId = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => bcrypt($request->password),
+                    "role" => "customer"
+                ])->id;
+
+                Address::create([
+                    'user_id' => $lastId,
+                    'street_address' => $request->street_address,
+                    'city' => $request->city,
+                    'state' => $request->state,
+                    'postal_code' => $request->postal_code,
+                    'country' => $request->country,
+                    'phone' => $request->phone,
+                    'detail_address' => $request->detail_address
+                ]);
+
+                $validate = $request->validate([
+                    'email' => ['required'],
+                    'password' => ['required']
+                ]);
+
+
+                if (Auth::attempt($validate)) {
+                    $user = Auth::user();
+
+                    $request->session()->put("name", $user->name);
+                    $request->session()->put("id", $user->id);
+                    $request->session()->put("role", $user->role);
+                    return redirect('/home');
+
+                } else {
+                    return redirect('/loginCustomer');
+                }
+
+            } else {
+                Alert::toast("Confirm password is not correct!");
+            }
+
+        } else {
+            Alert::toast("Please fill the field correctly", "danger");
+        }
+    }
+
     public function loginCustomer(Request $request)
     {
         $validate = $request->validate([
@@ -75,12 +142,12 @@ class AuthController extends Controller
         if (Auth::attempt($validate)) {
             $user = Auth::user();
 
-                $request->session()->put("name", $user->name);
-                $request->session()->put("id", $user->id);
-                $request->session()->put("role", $user->role);
-                return redirect('/home');
+            $request->session()->put("name", $user->name);
+            $request->session()->put("id", $user->id);
+            $request->session()->put("role", $user->role);
+            return redirect('/home');
 
-        }else{
+        } else {
             return redirect('/loginCustomer');
         }
     }

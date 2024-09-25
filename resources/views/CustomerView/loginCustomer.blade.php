@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,26 +100,31 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="login-container">
         <h1 style="color: #F8F9FA">Login</h1>
-        <form action="/loginCustomer/proccess" method="POST" >
+        <form action="/loginCustomer/proccess" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email" name="email">
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="Enter your email" name="email">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password">
+                <input type="password" class="form-control" id="password" placeholder="Enter your password"
+                    name="password">
             </div>
             <button type="submit" class="btn btn-custom">Login</button>
         </form>
         <p class="form-text mt-4">Don't have an account? <a href="/register">Sign up</a></p>
+        <p class="form-text mt-4">Back to home? <a href="/">Home</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

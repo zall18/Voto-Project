@@ -24,6 +24,7 @@ Route::get('/', [AuthController::class, 'Unauthorize']);
 Route::get('/loginAdmin', [AuthController::class, 'loginPage']);
 Route::post('/loginProcess', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'registerPage']);
+Route::post('/registerProcess', [AuthController::class, 'registerProsess']);
 
 Route::group(['middleware' => 'adminMiddleware'], function () {
 

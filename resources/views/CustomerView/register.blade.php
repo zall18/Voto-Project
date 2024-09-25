@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,15 +27,21 @@
     <link rel="stylesheet" href="{{ asset('customerAssets/css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('customerAssets/css/style.css') }}">
 </head>
+
 <body>
     <div class="hero-wrap hero-bread" style="background-image: url('{{ asset('customerAssets/images/bg_6.jpg') }}');">
         <h1 class="text-center font-weight-bold">Let's Complete Your Registration</h1>
     </div>
-    
+
     <section class="ftco-section contact-section bg-light">
         <div class="container">
-            
-            <form action="#" class="billing-form container">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <form action="/registerProcess" class="billing-form container" method="POST">
+                @csrf
                 <div class="row align-items-end">
                     <div class="col-md-12">
                         <h3 class="text-center font-weight-bold">Your Account Section!</h1>
@@ -43,25 +50,28 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="lastname">Name</label>
-                            <input type="text" class="form-control" placeholder="" name="name">
+                            <input type="text" class="form-control" placeholder="" name="name" @required('fill this field')>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="lastname">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="" value="">
+                            <input type="email" class="form-control" name="email" placeholder="" value=""
+                                @required('fill this field')>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="lastname">Password</label>
-                            <input type="password" class="form-control" name="password" placeholder="" value="">
+                            <input type="password" class="form-control" name="password" placeholder="" value=""
+                                @required('fill this field')>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="lastname">Confirm Password</label>
-                            <input type="password" class="form-control" name="repassword" placeholder="" value="">
+                            <input type="password" class="form-control" name="repassword" placeholder="" value=""
+                                @required('fill this field')>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -71,11 +81,12 @@
                     <div class="w-100"></div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="country">State / Country</label>
+                            <label for="country">Country</label>
                             <div class="select-wrap">
                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                <input type="text" class="form-control" placeholder="" value="" name="country">
-    
+                                <input type="text" class="form-control" placeholder="" value="" name="country"
+                                    @required('fill this field')>
+
                             </div>
                         </div>
                     </div>
@@ -84,8 +95,9 @@
                             <label for="country">State</label>
                             <div class="select-wrap">
                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                                <input type="text" class="form-control" placeholder="" value="" name="state">
-    
+                                <input type="text" class="form-control" placeholder="" value="" name="state"
+                                    @required('fill this field')>
+
                             </div>
                         </div>
                     </div>
@@ -93,43 +105,53 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="streetaddress">Street Address</label>
-                            <input type="text" class="form-control" placeholder="House number and street name" name="street_address"
-                                >
+                            <input type="text" class="form-control" placeholder="House number and street name"
+                                name="street_address" @required('fill this field')>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Appartment, suite, unit etc: (optional)" name="detail_address"
-                                value="">
+                            <input type="text" class="form-control"
+                                placeholder="Appartment, suite, unit etc: (optional)" name="detail_address"
+                                value="" @required('fill this field')>
                         </div>
                     </div>
                     <div class="w-100"></div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="towncity">Town / City</label>
-                            <input type="text" class="form-control" placeholder="" value="" name="city">
+                            <input type="text" class="form-control" placeholder="" value="" name="city"
+                                @required('fill this field')>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="postcodezip">Postcode / ZIP *</label>
-                            <input type="text" class="form-control" placeholder="" value="" name="postal_code">
+                            <input type="text" class="form-control" placeholder="" value=""
+                                name="postal_code" @required('fill this field')>
                         </div>
                     </div>
                     <div class="w-100"></div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" placeholder="" value="" name="phone">
+                            <input type="text" class="form-control" placeholder="" value="" name="phone"
+                                @required('fill this field')>
                         </div>
                     </div>
                     <div class="w-100"></div>
                     <div class="col-md-12">
-                        <h3 class="text-center font-weight-bold">Your Account Section!</h1>
+                        <input type="submit" value="Done Registration!" class="btn btn-success w-100">
 
                     </div>
-    
+                    <div class="col-md-12">
+
+                        <p class="form-text mt-4 text-center">Already have an account? <a href="/loginCustomer">Sign
+                                in</a>
+                        </p>
+                    </div>
                 </div>
             </form><!-- END -->
 </body>
+
 </html>
