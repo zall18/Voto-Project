@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AuthController::class, 'Unauthorize']);
 Route::get('/loginAdmin', [AuthController::class, 'loginPage']);
 Route::post('/loginProcess', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'registerPage']);
 
 Route::group(['middleware' => 'adminMiddleware'], function () {
 

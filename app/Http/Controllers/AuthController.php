@@ -57,6 +57,11 @@ class AuthController extends Controller
         return View('auth');
     }
 
+    public function registerPage()
+    {
+        return view('CustomerView.register');
+    }
+
     public function loginCustomer(Request $request)
     {
         $validate = $request->validate([

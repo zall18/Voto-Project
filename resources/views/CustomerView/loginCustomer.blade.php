@@ -115,7 +115,7 @@
             </div>
             <button type="submit" class="btn btn-custom">Login</button>
         </form>
-        <p class="form-text mt-4">Don't have an account? <a href="#">Sign up</a></p>
+        <p class="form-text mt-4">Don't have an account? <a href="/register">Sign up</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
