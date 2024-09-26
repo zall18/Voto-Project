@@ -74,6 +74,8 @@ Route::group(['middleware' => 'customerLogin'], function () {
 
     // User Profile Route
     Route::get('/me', [UserController::class, 'me']);
+    Route::get('/me/update', [UserController::class, 'updatePage']);
+    Route::post('/me/updateprocess', [UserController::class, 'update']);
     Route::get('/user/product/createView', [ProductController::class, 'productCreateView']);
     Route::post('/user/product/create', [ProductController::class, 'productCreate']);
 

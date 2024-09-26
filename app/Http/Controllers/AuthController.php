@@ -122,10 +122,12 @@ class AuthController extends Controller
 
             } else {
                 Alert::toast("Confirm password is not correct!");
+                return back();
             }
 
         } else {
             Alert::toast("Please fill the field correctly", "danger");
+            return back();
         }
     }
 

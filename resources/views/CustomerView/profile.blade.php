@@ -96,7 +96,7 @@
 
                 </div>
             </form><!-- END -->
-
+            <p><a href="/me/update" class="btn btn-black py-3 px-5 mr-2 w-100">Edit Your Profile & Address!</a></p>
             <h3 class="mb-4">Your Product!</h3>
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-8 col-lg-10 order-md-last">

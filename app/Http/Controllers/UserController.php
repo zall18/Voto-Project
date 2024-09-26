@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Password;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -103,4 +104,55 @@ class UserController extends Controller
 
         return view('CustomerView.profile', $data);
     }
+
+    public function updatePage()
+    {
+        $data['user'] = User::find(Session::get('id'));
+        $data['address'] = Address::where('user_id', Session::get('id'))->first();
+        return view('CustomerView.UpdatePage', $data);
+    }
+
+    public function update(Request $request)
+    {
+        $validate = $request->validate([
+            'name' => ['required'],
+            'country' => ['required'],
+            'state' => ['required'],
+            'street_address' => ['required'],
+            'detail_address' => ['required'],
+            'city' => ['required'],
+            'postal_code' => ['required'],
+            'phone' => ['required']
+        ]);
+
+        if ($validate) {
+            if($request->password != null)
+            {
+                User::where('id', Session::get('id'))->update([
+                    'name' => $request->name,
+                    'password' => bcrypt($request->password),
+                ]);
+            }else{
+                User::where('id', Session::get('id'))->update([
+                    'name' => $request->name,
+                ]);
+            }
+
+            Address::where('id', Session::get('id'))->update([
+                'street_address' => $request->street_address,
+                'city' => $request->city,
+                'state' => $request->state,
+                'postal_code' => $request->postal_code,
+                'country' => $request->country,
+                'phone' => $request->phone,
+                'detail_address' => $request->detail_address
+            ]);
+
+            return redirect('/me');
+        } else {
+            Alert::toast("Please fill the field correctly", "danger");
+            return back();
+        }
+    }
 }
+
